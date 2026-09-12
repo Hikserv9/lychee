@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vortex Wear | Luxury Cyber-Fashion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-[#0B0B0F] text-white font-sans min-h-screen">
+<nav class="sticky top-0 z-40 glass px-8 py-4 flex justify-between items-center">
+<div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">VORTEX WEAR</div>
+<div class="flex items-center gap-6">
+<a href="index.html" class="text-xs tracking-widest uppercase opacity-60 hover:opacity-100">Home</a>
+<button id="cartBtn" class="relative glass p-2.5 rounded-full neon-border">
+<span class="text-lg">🛒</span>
+<span id="cartCount" class="absolute -top-1 -right-1 bg-[#CCFF00] text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+</div>
+</nav>
+<section class="relative h-[62vh] overflow-hidden mx-6 md:mx-8 mt-6 rounded-3xl border border-white/5">
+<div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/15 via-transparent to-[#CCFF00]/10"></div>
+<div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(#fff 1px, transparent 0);background-size:32px 32px"></div>
+<div class="relative h-full flex flex-col justify-center px-8 md:px-16">
+<p class="text-[11px] tracking-[0.4em] uppercase text-[#00F0FF] mb-4">FW 2026 — Obsidian Collection</p>
+<h1 class="font-sci-fi text-5xl md:text-7xl font-bold leading-none">BEYOND<br><span class="text-gradient-cyan-lime">FABRIC</span></h1>
+<p class="text-gray-400 max-w-md mt-4 text-sm">Engineered cyber-luxury. Iridescent membranes, zero-gravity tailoring.</p>
+<a href="#grid" class="mt-8 w-fit bg-[#CCFF00] text-black px-8 py-3 rounded-full font-bold text-xs tracking-widest uppercase glow-green">Shop Collection</a>
+</div>
+</section>
+<main id="grid" class="max-w-7xl mx-auto px-6 md:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
+</main>
+<div id="quickView" class="fixed inset-0 hidden z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+<div class="glass max-w-lg w-full rounded-3xl p-8 border border-[#00F0FF]/30 relative">
+<button onclick="closeQuickView()" class="absolute top-4 right-4 text-white/60 hover:text-white">✕</button>
+<div id="qvContent"></div>
+</div>
+</div>
+<div class="fixed bottom-3 right-4 text-[10px] tracking-widest uppercase text-white/25 pointer-events-none">Created with OmniMind Free Tier</div>
+<script>
+const products=[
+{id:1,name:"NEO SHELL PARKA",price:890,cat:"Outerwear"},
+{id:2,name:"PHOTON WEAVE HOODIE",price:420,cat:"Knitwear"},
+{id:3,name:"VOID CARGO SYSTEM",price:560,cat:"Bottoms"},
+{id:4,name:"HOLO DRAPE COAT",price:1240,cat:"Outerwear"},
+{id:5,name:"CYBER KNIT DRESS",price:680,cat:"Dresses"},
+{id:6,name:"NEURAL VEST MK-II",price:390,cat:"Layers"},
+{id:7,name:"OBSIDIAN TRENCH",price:980,cat:"Outerwear"},
+{id:8,name:"LUMEN TRACK SET",price:740,cat:"Sets"}
+];
+let cart=0;
+const grid=document.getElementById('grid');
+products.forEach(p=>{
+grid.innerHTML+=`
+<div class="glass rounded-2xl p-4 neon-border group flex flex-col">
+<div class="viewer-canvas h-64 rounded-xl relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/30 transition">
+<div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/5 to-[#CCFF00]/5 opacity-0 group-hover:opacity-100 transition"></div>
+<span class="text-[10px] tracking-[0.3em] uppercase text-white/20">${p.cat}</span>
+<button onclick="openQuickView(${p.id})" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/40 backdrop-blur-sm text-xs font-bold tracking-widest uppercase text-white">Quick View</button>
+</div>
+<div class="pt-4 flex-1">
+<h3 class="font-sci-fi text-xs font-bold tracking-widest">${p.name}</h3>
+<p class="text-[#CCFF00] font-bold text-sm mt-1">$${p.price}</p>
+</div>
+<button onclick="addToCart()" class="mt-3 w-full py-2.5 rounded-xl border border-white/10 text-xs font-bold tracking-widest uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition">Add to Cart</button>
+</div>`;
+});
+function openQuickView(id){
+const p=products.find(x=>x.id===id);
+document.getElementById('qvContent').innerHTML=`
+<div class="viewer-canvas h-56 rounded-xl flex items-center justify-center mb-6 text-xs tracking-[0.3em] uppercase text-white/30">${p.cat} Preview</div>
+<h3 class="font-sci-fi text-xl font-bold">${p.name}</h3>
+<p class="text-[#CCFF00] font-bold mt-1">$${p.price}</p>
+<p class="text-gray-400 text-sm mt-3">Limited obsidian edition. Water-repellent nano-weave, thermal adaptive lining.</p>
+<button onclick="addToCart();closeQuickView()" class="mt-6 w-full py-3 rounded-xl bg-[#CCFF00] text-black font-bold text-xs tracking-widest uppercase glow-green">Add to Cart — $${p.price}</button>`;
+document.getElementById('quickView').classList.remove('hidden');
+}
+function closeQuickView(){document.getElementById('quickView').classList.add('hidden');}
+document.getElementById('quickView').addEventListener('click',e=>{if(e.target.id==='quickView')closeQuickView()});
+function addToCart(){
+cart++;
+const c=document.getElementById('cartCount');
+c.textContent=cart;c.classList.remove('hidden');c.classList.add('flex');
+}
+</script>
+</body>
+</html>

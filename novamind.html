@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaMind AI | Ultra-Premium SaaS Landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        body { background-color: #0B0B0F; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .orb { background: radial-gradient(circle at 30% 30%, #A855F7, #00F0FF); box-shadow: 0 0 80px rgba(168,85,247,0.5), inset 0 0 40px rgba(0,240,255,0.7); animation: float 6s ease-in-out infinite, pulse-orb 3s ease-in-out infinite alternate; }
+        @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)} }
+        @keyframes pulse-orb { 0%{transform:scale(0.98);opacity:0.85}100%{transform:scale(1.02);opacity:1} }
+        .glow-green { box-shadow: 0 0 25px rgba(204,255,0,0.35); }
+        .glow-cyan { box-shadow: 0 0 25px rgba(0,240,255,0.35); }
+        .text-gradient { background: linear-gradient(135deg,#CCFF00,#00F0FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Fixed Top Navbar (same as other pages) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
+        <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient">OMNIMIND</div>
+        <div class="flex space-x-8 items-center">
+            <a href="#" class="nav-link font-medium text-sm uppercase tracking-widest">Home</a>
+            <a href="#features" class="nav-link font-medium text-sm uppercase tracking-widest">Features</a>
+            <a href="#pricing" class="nav-link font-medium text-sm uppercase tracking-widest">Pricing</a>
+            <a href="#faq" class="nav-link font-medium text-sm uppercase tracking-widest">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 md:px-12 text-center">
+        <h1 class="text-5xl md:text-7xl font-sci-fi font-bold text-white mb-6">NovaMind AI</h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">Empower your business with next‑gen AI automation, real‑time analytics, and human‑like text generation— all in a single, ultra‑secure platform.</p>
+        <div class="flex gap-4 justify-center mb-12">
+            <a href="#" class="px-8 py-3 bg-[#CCFF00] text-black font-semibold rounded-full glow-green hover:scale-105 transition-transform">Get Started</a>
+            <button onclick="openPricing()" class="px-8 py-3 border border-[#00F0FF] text-[#00F0FF] font-semibold rounded-full hover:bg-[#00F0FF]/10 transition">View Pricing</button>
+        </div>
+        <!-- Floating UI Dashboard Preview (orb) -->
+        <div class="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
+            <div class="orb w-full h-full rounded-full"></div>
+            <!-- inner animated rings for depth -->
+            <div class="absolute inset-0 border border-white/5 rounded-full animate-pulse"></div>
+            <div class="absolute inset-0 border border-[#00F0FF]/10 rounded-full animate-spin" style="animation-duration:12s; border-style:dashed;"></div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section id="features" class="max-w-7xl mx-auto py-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Automation -->
+        <div class="glass p-8 rounded-2xl text-center hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all">
+            <div class="text-4xl mb-4 text-[#00F0FF]">⚙️</div>
+            <h3 class="font-sci-fi text-xl font-bold text-white mb-2">AI‑Powered Automation</h3>
+            <p class="text-gray-400 text-sm">Automate repetitive workflows, trigger actions based on real‑time data, and let the AI handle routine tasks.</p>
+        </div>
+        <!-- Analytics -->
+        <div class="glass p-8 rounded-2xl text-center hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all">
+            <div class="text-4xl mb-4 text-[#00F0FF]">📊</div>
+            <h3 class="font-sci-fi text-xl font-bold text-white mb-2">Real‑Time Analytics</h3>
+            <p class="text-gray-400 text-sm">Gain instant insights, predictive trends, and visual dashboards powered by AI models.</p>
+        </div>
+        <!-- Text Generation -->
+        <div class="glass p-8 rounded-2xl text-center hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all">
+            <div class="text-4xl mb-4 text-[#00F0FF]">✍️</div>
+            <h3 class="font-sci-fi text-xl font-bold text-white mb-2">Human‑like Text Generation</h3>
+            <p class="text-gray-400 text-sm">Create copy, emails, reports, and code snippets in seconds with LLM‑driven creativity.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="max-w-4xl mx-auto py-20 space-y-8">
+        <h2 class="text-3xl font-sci-fi font-bold text-center text-white mb-10">Frequently Asked Questions</h2>
+        <div class="space-y-6">
+            <details class="glass rounded-xl p-5">
+                <summary class="cursor-pointer font-medium text-white">What is NovaMind AI?</summary>
+                <p class="mt-2 text-gray-300">NovaMind AI is a SaaS platform that combines automation, analytics, and advanced LLM‑based text generation into a single, secure dashboard.</p>
+            </details>
+            <details class="glass rounded-xl p-5">
+                <summary class="cursor-pointer font-medium text-white">How does pricing work?</summary>
+                <p class="mt-2 text-gray-300">We offer a free tier, a Pro plan at $49/month, and an Enterprise option with custom quotes.</p>
+            </details>
+            <details class="glass rounded-xl p-5">
+                <summary class="cursor-pointer font-medium text-white">Is my data secure?</summary>
+                <p class="mt-2 text-gray-300">All data is encrypted at rest and in transit, compliant with ISO‑27001 and GDPR standards.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Pricing Modal (hidden) -->
+    <div id="pricingOverlay" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass w-full max-w-2xl rounded-3xl p-8 relative">
+            <button onclick="closePricing()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold">✕</button>
+            <h3 class="font-sci-fi text-2xl font-bold text-center text-white mb-6">Pricing Plans</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Free Tier -->
+                <div class="glass p-6 rounded-xl text-center">
+                    <h4 class="font-sci-fi text-xl font-bold text-[#00F0FF] mb-2">Free</h4>
+                    <p class="text-gray-300 mb-4">Basic AI access, limited automations.</p>
+                    <button class="w-full py-2 rounded-full bg-[#00F0FF] text-black font-semibold hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition">Sign Up</button>
+                </div>
+                <!-- Pro Tier -->
+                <div class="glass p-6 rounded-xl border border-[#CCFF00] text-center">
+                    <h4 class="font-sci-fi text-xl font-bold text-[#CCFF00] mb-2">Pro</h4>
+                    <p class="text-gray-300 mb-4">All features, priority support, watermark‑free assets.</p>
+                    <div class="text-3xl font-bold text-[#CCFF00] mb-2">$49/mo</div>
+                    <button class="w-full py-2 rounded-full bg-[#CCFF00] text-black font-semibold hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition">Upgrade Now</button>
+                </div>
+                <!-- Enterprise Tier -->
+                <div class="glass p-6 rounded-xl text-center">
+                    <h4 class="font-sci-fi text-xl font-bold text-[#00F0FF] mb-2">Enterprise</h4>
+                    <p class="text-gray-300 mb-4">Custom solutions, SLAs, dedicated account manager.</p>
+                    <button onclick="alert('Contact sales at sales@novamind.ai')" class="w-full py-2 rounded-full border border-[#00F0FF] text-[#00F0FF] font-semibold hover:bg-[#00F0FF]/10 transition">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Footer Watermark -->
+    <footer class="fixed bottom-0 left-0 right-0 text-center py-2 text-xs text-gray-600 bg-[#0B0B0F]">
+        Created with OmniMind Free Tier
+    </footer>
+
+    <!-- Modal JS -->
+    <script>
+        function openPricing(){document.getElementById('pricingOverlay').classList.remove('hidden');}
+        function closePricing(){document.getElementById('pricingOverlay').classList.add('hidden');}
+        // close when clicking outside modal
+        document.getElementById('pricingOverlay').addEventListener('click',e=>{if(e.target.id==='pricingOverlay')closePricing();});
+    </script>
+</body>
+</html>

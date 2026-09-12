@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherX | Web3 Crypto Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0B0B0F; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .orb { background: radial-gradient(circle at 30% 30%, #A855F7, #00F0FF); box-shadow: 0 0 80px rgba(168,85,247,0.5), inset 0 0 40px rgba(0,240,255,0.7); animation: float 6s ease-in-out infinite, pulse-orb 3s ease-in-out infinite alternate; }
+        @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)} }
+        @keyframes pulse-orb { 0%{transform:scale(0.98);opacity:0.85}100%{transform:scale(1.02);opacity:1} }
+        .chart-bar { background: #00F0FF; height: var(--h, 50%); width: 100%; border-radius: 2px; transition: height 0.4s; }
+        .chart { display: flex; flex-direction: column-reverse; gap: 4px; height: 120px; width: 100%; }
+        .glow-green { box-shadow: 0 0 25px rgba(204,255,0,0.35); }
+        .glow-cyan { box-shadow: 0 0 25px rgba(0,240,255,0.35); }
+        .text-gradient { background: linear-gradient(135deg,#CCFF00,#00F0FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-sans">
+    <!-- Left Sidebar -->
+    <aside class="w-20 lg:w-64 glass flex flex-col justify-between p-4 border-r border-white/5 h-full"
+        <div class="space-y-8"
+            <!-- Logo / Brand -->
+            <div class="hidden lg:block font-sci-fi text-xl text-gradient">
+                AetherX
+            </div>
+            <nav class="space-y-2"
+                <a href="#" class="flex items-center p-3 rounded-xl bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/20 hover:bg-[#00F0FF]/20 transition"><span class="text-2xl">📊</span><span class="hidden lg:inline ml-2 text-sm font-medium">Dashboard</span></a>
+                <a href="#" class="flex items-center p-3 rounded-xl hover:bg-white/5 text-gray-400 transition"><span class="text-2xl">🔄</span><span class="hidden lg:inline ml-2 text-sm font-medium">Swap</span></a>
+                <a href="#" class="flex items-center p-3 rounded-xl hover:bg-white/5 text-gray-400 transition"><span class="text-2xl">⚙️</span><span class="hidden lg-inline ml-2 text-sm font-medium">Settings</span></a>
+            </nav>
+        </div>
+        <!-- Bottom Status -->
+        <div class="text-xs text-gray-500 uppercase tracking-widest text-center">Beta</div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <!-- Top Bar -->
+        <header class="flex items-center justify-between px-6 py-4 glass border-b border-white/5">
+            <h1 class="font-sci-fi text-2xl text-gradient">
+                AetherX Dashboard
+            </h1>
+            <div class="flex items-center space-x-4"
+                <!-- Placeholder for network selector -->
+                <select class="glass py-1 px-2 rounded-md text-sm text-gray-200 focus:outline-none border border-white/10">
+                    <option class="bg-[#0B0B0F]" selected>Ethereum Mainnet</option>
+                    <option class="bg-[#0B0B0F]">Polygon</option>
+                </select>
+                <!-- Wallet status -->
+                <button id="walletBtn" class="glass py-1 px-3 rounded-md text-sm text-[#00F0FF] border border-[#00F0FF]/30 hover:bg-[#00F0FF]/10 transition"
+                    onclick="toggleWallet()">Connect Wallet</button>
+                <span id="walletAddr" class="text-xs text-gray-400 hidden">0x71C...3a</span>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="flex-1 overflow-y-auto p-6 space-y-8">
+            <!-- Charts Row -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Total Value Chart (placeholder) -->
+                <div class="glass p-4 rounded-xl">
+                    <h2 class="font-sci-fi text-lg text-white mb-4">Portfolio Value (USD)</h2>
+                    <div class="relative w-full h-48 flex items-center justify-center">
+                        <div class="w-32 h-32 orb"></div>
+                    </div>
+                    <p class="text-center text-2xl font-bold text-[#CCFF00] mt-4">$12,540.23</p>
+                </div>
+                
+                <!-- Bar Chart – Daily Volume -->
+                <div class="glass p-4 rounded-xl">
+                    <h2 class="font-sci-fi text-lg text-white mb-4">24h Volume</h2>
+                    <div class="chart">
+                        <div class="chart-bar" style="--h:70%"></div>
+                        <div class="chart-bar" style="--h:45%"></div>
+                        <div class="chart-bar" style="--h:55%"></div>
+                        <div class="chart-bar" style="--h:30%"></div>
+                        <div class="chart-bar" style="--h:80%"></div>
+                        <div class="chart-bar" style="--h:60%"></div>
+                    </div>
+                </div>
+                
+                <!-- Pie Chart – Asset Allocation (pure CSS) -->
+                <div class="glass p-4 rounded-xl flex flex-col items-center">
+                    <h2 class="font-sci-fi text-lg text-white mb-4">Asset Allocation</h2>
+                    <div class="relative w-32 h-32">
+                        <svg viewBox="0 0 32 32" class="w-full h-full">
+                            <circle r="16" cx="16" cy="16" fill="none" stroke="#00F0FF" stroke-width="32" stroke-dasharray="75 25"></circle>
+                            <circle r="16" cx="16" cy="16" fill="none" stroke="#CCFF00" stroke-width="32" stroke-dasharray="15 85" transform="rotate(-90 16 16)"></circle>
+                            <circle r="16" cx="16" cy="16" fill="none" stroke="#555" stroke-width="32" stroke-dasharray="10 90" transform="rotate(-180 16 16)"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-medium text-white">
+                            45%
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Transactions Table -->
+            <section class="glass p-4 rounded-xl overflow-auto">
+                <h2 class="font-sci-fi text-lg text-white mb-4">Recent Transactions</h2>
+                <table class="w-full text-sm text-left text-gray-300">
+                    <thead class="bg-white/5">
+                        <tr>
+                            <th class="px-4 py-2">Hash</th>
+                            <th class="px-4 py-2">From</th>
+                            <th class="px-4 py-2">To</th>
+                            <th class="px-4 py-2">Amount</th>
+                            <th class="px-4 py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-white/5">
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x9a3f...d5c4</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x71C...3a</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x5e2b...b1f9</td>
+                            <td class="px-4 py-2">0.85 ETH</td>
+                            <td class="px-4 py-2 text-[#00F0FF]">Success</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x4b2e...8a77</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x71C...3a</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x1b9c...e2d5</td>
+                            <td class="px-4 py-2">1500 USDC</td>
+                            <td class="px-4 py-2 text-[#00F0FF]">Success</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x7f9e...4b2d</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x71C...3a</td>
+                            <td class="px-4 py-2 text-xs" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;">0x3d6a...f8c1</td>
+                            <td class="px-4 py-2">0.12 BTC</td>
+                            <td class="px-4 py-2 text-[#CCFF00]">Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Token Swap Widget -->
+            <section class="glass p-6 rounded-xl max-w-md mx-auto">
+                <h2 class="font-sci-fi text-lg text-white mb-4 text-center">Swap Tokens</h2>
+                <div class="space-y-4">
+                    <!-- From token -->
+                    <div class="flex items-center justify-between bg-white/5 p-2 rounded"
+                        <span class="text-sm text-gray-300">From</span>
+                        <div class="flex items-center space-x-2"
+                            <input type="number" placeholder="0.0" class="bg-transparent text-white text-right outline-none w-24" id="swapFrom">
+                            <select class="glass py-1 px-2 rounded text-sm text-white" id="swapFromToken"
+                                <option value="ETH" selected>ETH</option>
+                                <option value="USDC">USDC</option>
+                                <option value="DAI">DAI</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- To token -->
+                    <div class="flex items-center justify-between bg-white/5 p-2 rounded"
+                        <span class="text-sm text-gray-300">To</span>
+                        <div class="flex items-center space-x-2"
+                            <input type="number" placeholder="0.0" class="bg-transparent text-white text-right outline-none w-24" id="swapTo" disabled>
+                            <select class="glass py-1 px-2 rounded text-sm text-white" id="swapToToken"
+                                <option value="USDC">USDC</option>
+                                <option value="ETH" selected>ETH</option>
+                                <option value="DAI">DAI</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button onclick="performSwap()" class="w-full py-2 bg-[#00F0FF] text-black font-semibold rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition">Swap Tokens</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Fixed Footer Watermark -->
+    <footer class="fixed bottom-0 left-0 right-0 text-center py-1 text-xs text-gray-600 bg-[#0B0B0F]">
+        Created with OmniMind Free Tier
+    </footer>
+
+    <!-- JS Interaction (wallet mock & swap) -->
+    <script>
+        function toggleWallet(){
+            const btn=document.getElementById('walletBtn');
+            const addr=document.getElementById('walletAddr');
+            if(btn.innerText==='Connect Wallet'){
+                btn.innerText='Disconnect';
+                addr.classList.remove('hidden');
+            } else {
+                btn.innerText='Connect Wallet';
+                addr.classList.add('hidden');
+            }
+        }
+        function performSwap(){
+            const from=document.getElementById('swapFrom');
+            const to=document.getElementById('swapTo');
+            const amount=parseFloat(from.value)||0;
+            if(amount>0){
+                // simple mock conversion 1:1
+                to.value=amount.toFixed(4);
+                alert('Swap simulated: '+amount+' '+document.getElementById('swapFromToken').value+' → '+to.value+' '+document.getElementById('swapToToken').value);
+            } else {
+                alert('Enter amount to swap');
+            }
+        }
+    </script>
+</body>
+</html>
