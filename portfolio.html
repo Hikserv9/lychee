@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Creator | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-300 selection:bg-white selection:text-black">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center max-w-7xl mx-auto left-0 right-0">
+        <div class="text-white font-medium tracking-tighter text-xl">DC.</div>
+        <div class="flex space-x-8 text-sm font-light uppercase tracking-widest">
+            <a href="#about" class="hover:text-white transition-colors">About</a>
+            <a href="#projects" class="hover:text-white transition-colors">Work</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col justify-center pt-20">
+            <h1 class="text-white text-5xl md:text-7xl font-light tracking-tighter leading-tight mb-8">
+                Crafting digital <br> experiences with <br> <span class="italic text-gray-500">purpose and precision.</span>
+            </h1>
+            <p class="max-w-md text-lg font-light leading-relaxed text-gray-400">
+                Independent creator specialized in minimalist design and functional web interfaces. 
+                Based in the digital ether.
+            </p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-xs uppercase tracking-[0.3em] text-gray-500 pt-1">About Me</div>
+                <div class="md:col-span-2 space-y-6 text-xl font-light leading-relaxed">
+                    <p>
+                        I believe that great design is invisible. It’s about solving problems through clarity and simplicity, ensuring that every element serves a distinct purpose.
+                    </p>
+                    <p class="text-gray-500">
+                        With over 5 years of experience in the industry, I have collaborated with brands to translate complex ideas into intuitive digital products.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Grid -->
+        <section id="projects" class="py-32 border-t border-white/5">
+            <div class="flex justify-between items-end mb-16">
+                <div class="text-xs uppercase tracking-[0.3em] text-gray-500">Selected Works</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-[#111] overflow-hidden mb-4">
+                        <div class="w-full h-full bg-gradient-to-tr from-gray-900 to-gray-800 transition-transform duration-700 group-hover:scale-105"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-white text-lg font-light">Lumina Architecture</h3>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">2024</span>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-[#111] overflow-hidden mb-4">
+                        <div class="w-full h-full bg-gradient-to-tr from-stone-900 to-stone-800 transition-transform duration-700 group-hover:scale-105"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-white text-lg font-light">Synthetix Brand</h3>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">2023</span>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-[#111] overflow-hidden mb-4">
+                        <div class="w-full h-full bg-gradient-to-tr from-zinc-900 to-zinc-800 transition-transform duration-700 group-hover:scale-105"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-white text-lg font-light">Echo Mobile App</h3>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">2023</span>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-[#111] overflow-hidden mb-4">
+                        <div class="w-full h-full bg-gradient-to-tr from-neutral-900 to-neutral-800 transition-transform duration-700 group-hover:scale-105"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-white text-lg font-light">Minimalist HUD</h3>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">2024</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 border-t border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-xs uppercase tracking-[0.3em] text-gray-500 pt-1">Get in Touch</div>
+                <div class="md:col-span-2">
+                    <h2 class="text-white text-3xl font-light mb-12">Let's build something exceptional.</h2>
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-[10px] uppercase tracking-widest text-gray-500">Name</label>
+                                <input type="text" class="w-full bg-transparent border-b border-white/10 py-2 focus:outline-none focus:border-white transition-colors placeholder-gray-700" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] uppercase tracking-widest text-gray-500">Email</label>
+                                <input type="email" class="w-full bg-transparent border-b border-white/10 py-2 focus:outline-none focus:border-white transition-colors placeholder-gray-700" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-widest text-gray-500">Message</label>
+                            <textarea rows="4" class="w-full bg-transparent border-b border-white/10 py-2 focus:outline-none focus:border-white transition-colors placeholder-gray-700 resize-none" placeholder="Tell me about your project"></textarea>
+                        </div>
+                        <button type="submit" class="text-white text-sm uppercase tracking-widest hover:text-gray-400 transition-colors pt-4">
+                            Send Message &rarr;
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-4xl mx-auto px-6 py-20 text-center border-t border-white/5">
+        <div class="text-xs text-gray-600 uppercase tracking-widest">
+            &copy; 2026 DC. Studio. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

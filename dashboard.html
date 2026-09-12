@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniMind Studio | Personalization Dashboard</title>
+    <title>OmniMind Studio | AI Control Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="flex flex-col h-screen overflow-hidden">
-    <!-- Navbar -->
-    <nav class="glass px-8 py-4 flex justify-between items-center z-50">
+<body class="h-screen overflow-hidden flex flex-col bg-[#0B0B0F] text-white">
+    <!-- Top Universal Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
         <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">OMNIMIND</div>
         <div class="flex space-x-8 items-center">
             <a href="index.html" class="nav-link font-medium text-sm uppercase tracking-widest">Home</a>
@@ -18,66 +18,120 @@
         </div>
     </nav>
 
-    <div class="flex flex-1 overflow-hidden">
-        <!-- Sidebar -->
-        <aside class="w-20 lg:w-64 glass flex flex-col justify-between p-4 border-r border-white/5">
-            <div class="space-y-8">
-                <nav class="space-y-4">
-                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/20">
-                        <span>⚡</span><span class="hidden lg:inline text-sm font-medium">Personalization</span>
+    <div class="flex flex-1 pt-20 overflow-hidden">
+        <!-- Sleek Translucent Sidebar -->
+        <aside class="w-20 lg:w-64 glass border-r border-white/5 flex flex-col justify-between p-4 py-8">
+            <div class="space-y-10">
+                <div class="hidden lg:block">
+                    <span class="text-[10px] font-sci-fi text-gray-500 uppercase tracking-[0.3em] px-4">Workspace</span>
+                </div>
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center space-x-4 p-4 rounded-2xl bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/20 group transition-all">
+                        <span class="text-xl">📊</span>
+                        <span class="hidden lg:inline text-sm font-semibold tracking-wide">Overview</span>
                     </a>
-                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 transition-colors">
-                        <span>⚙️</span><span class="hidden lg:inline text-sm font-medium">System</span>
+                    <a href="#" class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-white/5 text-gray-400 group transition-all">
+                        <span class="text-xl">💠</span>
+                        <span class="hidden lg:inline text-sm font-semibold tracking-wide">Templates</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-white/5 text-gray-400 group transition-all">
+                        <span class="text-xl">🧠</span>
+                        <span class="hidden lg:inline text-sm font-semibold tracking-wide">AI Settings</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-white/5 text-gray-400 group transition-all">
+                        <span class="text-xl">💳</span>
+                        <span class="hidden lg:inline text-sm font-semibold tracking-wide">Billing</span>
                     </a>
                 </nav>
             </div>
+            
+            <div class="p-4 glass rounded-2xl bg-gradient-to-br from-[#00F0FF]/5 to-transparent border border-white/5 hidden lg:block">
+                <div class="text-[10px] text-gray-500 uppercase mb-2">System Health</div>
+                <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <div class="h-full bg-[#CCFF00] w-4/5 glow-green"></div>
+                </div>
+                <div class="text-[10px] text-[#CCFF00] mt-2">98.2% Optimal</div>
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="flex-1 p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 overflow-y-auto">
-            <!-- AI Companion Visualizer -->
-            <section class="lg:col-span-2 glass rounded-3xl p-8 flex flex-col items-center justify-center relative overflow-hidden min-h-[400px]">
-                <div class="absolute top-6 left-6 text-xs text-gray-400 tracking-widest uppercase">AI Companion Visualizer</div>
-                <div class="w-64 h-64 rounded-full orb flex items-center justify-center">
-                    <div class="w-48 h-48 rounded-full border border-white/20 animate-spin" style="animation-duration: 15s;"></div>
-                </div>
-                <div class="mt-8 text-center">
-                    <div class="text-sm text-[#00F0FF]">Companion Status: Optimal</div>
-                    <div class="text-xs text-gray-500 mt-1">Latency: 12ms</div>
-                </div>
-            </section>
-
-            <!-- Control Panel -->
-            <section class="space-y-6">
-                <div class="glass p-6 rounded-2xl">
-                    <h3 class="text-xs font-semibold text-gray-400 mb-4 tracking-wider uppercase">System Latency</h3>
-                    <div class="flex items-end gap-1 h-12">
-                        <div class="bg-[#00F0FF]/40 w-1/5 h-[40%] rounded-t"></div>
-                        <div class="bg-[#00F0FF]/60 w-1/5 h-[70%] rounded-t"></div>
-                        <div class="bg-[#00F0FF] w-1/5 h-[100%] rounded-t"></div>
-                        <div class="bg-[#00F0FF]/50 w-1/5 h-[50%] rounded-t"></div>
-                        <div class="bg-[#00F0FF]/80 w-1/5 h-[80%] rounded-t"></div>
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto space-y-8">
+            
+            <!-- Analytics Section -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-6 rounded-3xl border border-white/5 relative overflow-hidden">
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Total Downloads</div>
+                    <div class="text-3xl font-sci-fi font-bold text-white">1,284</div>
+                    <div class="mt-4 flex items-end gap-1 h-8">
+                        <div class="w-full bg-[#CCFF00]/20 h-[30%] rounded-sm"></div>
+                        <div class="w-full bg-[#CCFF00]/20 h-[50%] rounded-sm"></div>
+                        <div class="w-full bg-[#CCFF00]/20 h-[40%] rounded-sm"></div>
+                        <div class="w-full bg-[#CCFF00]/40 h-[80%] rounded-sm"></div>
+                        <div class="w-full bg-[#CCFF00] h-[60%] rounded-sm"></div>
                     </div>
                 </div>
-
-                <div class="glass p-6 rounded-2xl space-y-4">
-                    <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase">Generative UI Theme</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center justify-between p-3 rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/5 cursor-pointer">
-                            <span class="text-sm font-medium">Cyberpunk</span>
-                            <input type="radio" name="theme" checked class="accent-[#00F0FF]">
-                        </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 hover:bg-white/5 cursor-pointer transition-colors">
-                            <span class="text-sm font-medium">Minimalist</span>
-                            <input type="radio" name="theme" class="accent-[#00F0FF]">
-                        </label>
-                        <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 hover:bg-white/5 cursor-pointer transition-colors">
-                            <span class="text-sm font-medium">Professional</span>
-                            <input type="radio" name="theme" class="accent-[#00F0FF]">
-                        </label>
+                <div class="glass p-6 rounded-3xl border border-white/5 relative overflow-hidden">
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Active Sessions</div>
+                    <div class="text-3xl font-sci-fi font-bold text-[#00F0FF]">42</div>
+                    <div class="mt-4 flex items-end gap-1 h-8">
+                        <div class="w-full bg-[#00F0FF]/20 h-[60%] rounded-sm animate-pulse"></div>
+                        <div class="w-full bg-[#00F0FF]/40 h-[40%] rounded-sm animate-pulse" style="animation-delay: 0.2s"></div>
+                        <div class="w-full bg-[#00F0FF]/20 h-[70%] rounded-sm animate-pulse" style="animation-delay: 0.4s"></div>
+                        <div class="w-full bg-[#00F0FF] h-[30%] rounded-sm animate-pulse" style="animation-delay: 0.6s"></div>
+                        <div class="w-full bg-[#00F0FF]/30 h-[90%] rounded-sm animate-pulse" style="animation-delay: 0.8s"></div>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-3xl border border-white/5">
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">AI Efficiency</div>
+                    <div class="text-3xl font-sci-fi font-bold text-[#A855F7]">94%</div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-[10px] text-gray-500 italic">+12% from last update</span>
+                        <div class="w-12 h-12 rounded-full border-2 border-[#A855F7]/30 border-t-[#A855F7] animate-spin"></div>
                     </div>
                 </div>
             </section>
+
+            <!-- AI Control Center -->
+            <section class="glass rounded-[3rem] p-8 md:p-16 flex flex-col items-center justify-center relative overflow-hidden min-h-[500px] border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent">
+                <!-- Decorative Grid Background -->
+                <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#00F0FF 1px, transparent 0); background-size: 40px 40px;"></div>
+                
+                <div class="z-10 text-center mb-12">
+                    <span class="text-[10px] font-sci-fi text-[#00F0FF] uppercase tracking-[0.5em] block mb-4">Neural Assistant Core</span>
+                    <h2 class="text-3xl md:text-4xl font-sci-fi font-bold">READY TO SYNC</h2>
+                </div>
+
+                <!-- AI Orb Visualizer -->
+                <div class="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
+                    <div class="orb w-full h-full rounded-full"></div>
+                    <!-- Outer Rings -->
+                    <div class="absolute inset-0 border border-white/5 rounded-full scale-[1.2] animate-pulse"></div>
+                    <div class="absolute inset-0 border border-[#00F0FF]/10 rounded-full scale-[1.4] animate-spin" style="animation-duration: 10s; border-style: dashed;"></div>
+                </div>
+
+                <div class="z-10 mt-12 flex gap-8 items-center">
+                    <div class="text-center">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Latency</div>
+                        <div class="text-sm font-sci-fi text-[#00F0FF]">12MS</div>
+                    </div>
+                    <div class="h-8 w-px bg-white/10"></div>
+                    <div class="text-center">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Status</div>
+                        <div class="text-sm font-sci-fi text-[#CCFF00]">ACTIVE</div>
+                    </div>
+                    <div class="h-8 w-px bg-white/10"></div>
+                    <div class="text-center">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Sync</div>
+                        <div class="text-sm font-sci-fi text-white">99.9%</div>
+                    </div>
+                </div>
+
+                <!-- Floating Interactive Widget -->
+                <button class="mt-12 glass px-10 py-4 rounded-full border border-white/10 hover:border-[#00F0FF] hover:scale-105 transition-all text-sm font-bold tracking-widest uppercase">
+                    Initiate Neural Sync
+                </button>
+            </section>
+
         </main>
     </div>
 </body>
