@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniMind Studio | Asset Marketplace</title>
+    <title>OmniMind Studio | Spatial Web Templates</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="min-h-screen pt-24 px-8 md:px-12">
-    <!-- Navbar -->
+<body class="min-h-screen pt-24 px-6 md:px-12 bg-[#0B0B0F] text-white font-sans">
+    <!-- Top Universal Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
         <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">OMNIMIND</div>
         <div class="flex space-x-8 items-center">
@@ -18,67 +18,230 @@
         </div>
     </nav>
 
-    <div class="flex flex-col lg:flex-row gap-8">
-        <!-- AI Filter Panel -->
-        <aside class="w-full lg:w-64 glass p-6 rounded-2xl h-fit sticky top-24">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-[#00F0FF] mb-6">AI Filters</h2>
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-sm text-gray-400 mb-2">Complexity</label>
-                    <input type="range" class="w-full h-1 bg-gray-700 accent-[#CCFF00]">
+    <!-- Header & Search/Filter Section -->
+    <header class="max-w-7xl mx-auto mb-10 text-center md:text-left">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+            <div>
+                <span class="text-xs font-sci-fi text-[#00F0FF] uppercase tracking-widest">Spatial Catalog</span>
+                <h1 class="text-4xl md:text-5xl font-sci-fi font-bold mt-1">NEXT-GEN TEMPLATES</h1>
+                <p class="text-gray-400 text-sm mt-2 max-w-xl">Production-ready spatial web architecture, 3D canvases, and AI-integrated web templates.</p>
+            </div>
+            
+            <!-- Category Filter Badges -->
+            <div class="flex flex-wrap gap-2">
+                <button class="px-4 py-2 rounded-full text-xs font-semibold bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40">All Templates</button>
+                <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">Landing Page</button>
+                <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">Portfolio</button>
+                <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">Dashboard</button>
+                <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">E-Commerce</button>
+            </div>
+        </div>
+
+        <!-- Search Bar & Filters -->
+        <div class="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="relative w-full md:w-96">
+                <input type="text" placeholder="Search templates, tech, keywords..." class="w-full glass py-2.5 px-4 pl-10 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-gray-200 placeholder-gray-500">
+                <span class="absolute left-3.5 top-3 text-gray-400 text-sm">🔍</span>
+            </div>
+            <div class="flex items-center gap-4 w-full md:w-auto justify-end text-xs text-gray-400">
+                <span>Sort by:</span>
+                <select class="glass py-2 px-3 rounded-xl text-white bg-transparent focus:outline-none border border-white/10">
+                    <option class="bg-[#0B0B0F]">Trending First</option>
+                    <option class="bg-[#0B0B0F]">Newest Release</option>
+                    <option class="bg-[#0B0B0F]">Price: Low to High</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3-Column Template Grid -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
+
+        <!-- Card 1: AI SaaS Landing Page -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <!-- Preview Canvas -->
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/10 to-[#A855F7]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-24 h-24 rounded-full border border-cyan/30 flex items-center justify-center animate-pulse">
+                        <span class="text-xs font-sci-fi text-[#00F0FF] tracking-widest">3D CANVAS</span>
+                    </div>
+                    <span class="absolute top-3 right-3 text-[10px] bg-[#CCFF00] text-black font-bold px-2.5 py-1 rounded-full uppercase">HOT</span>
                 </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-2">Category</label>
-                    <div class="flex flex-col gap-2">
-                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">3D Models</button>
-                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">Gadgets</button>
-                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">Environments</button>
+                
+                <!-- Info -->
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">NeuralSaaS Spatial</h3>
+                    <span class="text-[#CCFF00] font-bold text-lg">$79</span>
+                </div>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">Ultra-modern AI platform landing page with real-time WebGL node visualizer and glassmorphic UI widgets.</p>
+                
+                <!-- Tech Micro-Badges -->
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Next.js 14</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Three.js</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Tailwind</span>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+        <!-- Card 2: Minimalist 3D Portfolio -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/10 to-[#00F0FF]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-20 h-20 rounded-lg border border-lime/30 flex items-center justify-center transform rotate-12">
+                        <span class="text-xs font-sci-fi text-[#CCFF00] tracking-widest">PORTFOLIO</span>
+                    </div>
+                    <span class="absolute top-3 right-3 text-[10px] bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 font-bold px-2 py-0.5 rounded-full uppercase">NEW</span>
+                </div>
+                
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Aetherfolio 3D</h3>
+                    <span class="text-[#CCFF00] font-bold text-lg">$49</span>
+                </div>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">Sleek interactive portfolio featuring custom Spline 3D viewport canvas, kinetic typography, and audio FX.</p>
+                
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">React</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Spline 3D</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Framer Motion</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+        <!-- Card 3: Web3 Crypto Dashboard -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#A855F7]/15 to-[#00F0FF]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-28 h-20 border border-white/20 rounded flex items-center justify-center">
+                        <span class="text-xs font-sci-fi text-[#00F0FF] tracking-widest">DASHBOARD</span>
+                    </div>
+                    <span class="absolute top-3 right-3 text-[10px] bg-white/10 text-gray-300 font-bold px-2 py-0.5 rounded-full uppercase">PRO</span>
+                </div>
+                
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Vortex Protocol</h3>
+                    <span class="text-[#CCFF00] font-bold text-lg">$99</span>
+                </div>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">DeFi analytics and Web3 management dashboard with real-time WebSocket chart widgets and wallet connect.</p>
+                
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Vue 3</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Chart.js</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Ethers.js</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+        <!-- Card 4: Futuristic E-Commerce -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/15 to-[#A855F7]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-24 h-24 rounded-full border-2 border-dashed border-[#CCFF00]/40 flex items-center justify-center">
+                        <span class="text-xs font-sci-fi text-[#CCFF00] tracking-widest">STORE 3D</span>
                     </div>
                 </div>
-            </div>
-        </aside>
-
-        <!-- Product Grid -->
-        <main class="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-12">
-            <!-- Product Card 1 -->
-            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
-                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
-                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
-                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+                
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">CyberCart Spatial</h3>
+                    <span class="text-[#CCFF00] font-bold text-lg">$85</span>
                 </div>
-                <h3 class="font-semibold text-lg">Quantum Core</h3>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-[#CCFF00] font-bold">$1,299</span>
-                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">High-tech spatial e-commerce storefront with AR product preview integration and interactive 3D product rotators.</p>
+                
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Next.js</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebGL</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Shopify API</span>
                 </div>
             </div>
 
-            <!-- Product Card 2 -->
-            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
-                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
-                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
-                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+        <!-- Card 5: Spatial Audio Studio -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/15 to-[#CCFF00]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex items-end space-x-1.5 h-12">
+                        <div class="waveform-bar" style="animation-delay: 0.1s"></div>
+                        <div class="waveform-bar" style="animation-delay: 0.3s"></div>
+                        <div class="waveform-bar" style="animation-delay: 0.2s"></div>
+                        <div class="waveform-bar" style="animation-delay: 0.4s"></div>
+                    </div>
+                    <span class="absolute top-3 right-3 text-[10px] bg-[#00F0FF] text-black font-bold px-2.5 py-1 rounded-full uppercase">FREE</span>
                 </div>
-                <h3 class="font-semibold text-lg">Neural Link</h3>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-[#CCFF00] font-bold">$899</span>
-                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Resonance Audio</h3>
+                    <span class="text-[#00F0FF] font-bold text-lg">FREE</span>
+                </div>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">WebAudio API synthesis landing showcase page for music producers, podcasts, and generative sound engines.</p>
+                
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebAudio API</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Canvas 2D</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Tailwind</span>
                 </div>
             </div>
 
-            <!-- Product Card 3 -->
-            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
-                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
-                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
-                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#00F0FF] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+        <!-- Card 6: AR Meta World -->
+        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+            <div>
+                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#A855F7]/20 to-[#CCFF00]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-20 h-20 rounded-full border border-purple-500/40 flex items-center justify-center">
+                        <span class="text-xs font-sci-fi text-[#A855F7] tracking-widest">AR WORLD</span>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-lg">Spatial Frame</h3>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-[#CCFF00] font-bold">$499</span>
-                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">AetherVerse Spatial</h3>
+                    <span class="text-[#CCFF00] font-bold text-lg">$119</span>
+                </div>
+                <p class="text-gray-400 text-xs line-clamp-2 mb-4">WebXR compatible virtual real estate showcase and interactive 3D spatial world hub.</p>
+                
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebXR</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Three.js</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">GSAP</span>
                 </div>
             </div>
-        </main>
-    </div>
+
+            <div class="flex gap-3 pt-2">
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                <a href="dashboard.html" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">Download / Buy</a>
+            </div>
+        </div>
+
+    </main>
 </body>
 </html>
