@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniMind Studio | Asset Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0B0B0F; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-border { border: 1px solid rgba(0, 240, 255, 0.2); }
+        .neon-border:hover { border-color: #CCFF00; }
+        .viewer-canvas { background: #050507; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="p-8 md:p-12">
+    <div class="flex gap-8">
+        <!-- AI Filter Panel -->
+        <aside class="w-64 glass p-6 rounded-2xl h-fit sticky top-8">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-6">AI Filters</h2>
+            <div class="space-y-6">
+                <div><label class="block text-sm text-gray-400 mb-2">Complexity</label><input type="range" class="w-full h-1 bg-gray-700 accent-lime-400"></div>
+                <div><label class="block text-sm text-gray-400 mb-2">Category</label><div class="flex flex-col gap-2"><button class="text-left text-sm hover:text-cyan-400">3D Models</button><button class="text-left text-sm hover:text-cyan-400">Gadgets</button></div></div>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Product Card -->
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
+                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
+                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
+                    <div class="absolute bottom-2 right-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+                </div>
+                <h3 class="font-semibold text-lg">Quantum Core</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-lime-400 font-bold">$1,299</span>
+                    <button class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black">QUICK VIEW AR</button>
+                </div>
+            </div>
+            <!-- Duplicate for demo -->
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group"><div class="viewer-canvas h-48 rounded-xl mb-4"></div><h3 class="font-semibold">Neural Link</h3><div class="flex justify-between items-center mt-4"><span class="text-lime-400 font-bold">$899</span><button class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full">QUICK VIEW AR</button></div></div>
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group"><div class="viewer-canvas h-48 rounded-xl mb-4"></div><h3 class="font-semibold">Spatial Frame</h3><div class="flex justify-between items-center mt-4"><span class="text-lime-400 font-bold">$499</span><button class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full">QUICK VIEW AR</button></div></div>
+        </main>
+    </div>
+</body>
+</html>

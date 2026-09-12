@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniMind Studio | Spatial Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative px-6 pt-24">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
+        <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">OMNIMIND</div>
+        <div class="flex space-x-8 items-center">
+            <a href="index.html" class="nav-link nav-active font-medium text-sm uppercase tracking-widest">Home</a>
+            <a href="products.html" class="nav-link font-medium text-sm uppercase tracking-widest">Marketplace</a>
+            <a href="dashboard.html" class="nav-link font-medium text-sm uppercase tracking-widest">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- AI Voice Assistant Widget -->
+    <div class="absolute top-28 right-8 flex items-center space-x-4 glass p-3 rounded-full border border-cyan/30 z-20">
+        <div class="flex items-end space-x-1 h-6 px-2">
+            <div class="waveform-bar" style="animation-delay: 0.1s"></div>
+            <div class="waveform-bar" style="animation-delay: 0.2s"></div>
+            <div class="waveform-bar" style="animation-delay: 0.3s"></div>
+            <div class="waveform-bar" style="animation-delay: 0.4s"></div>
+        </div>
+        <div class="text-[10px] font-sci-fi uppercase tracking-widest text-cyan pr-4">AI Active</div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl w-full text-center z-10">
+        <h1 class="font-sci-fi text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-none">
+            THE FUTURE OF <br>
+            <span class="text-gradient-cyan-lime">WEB IS SPATIAL</span>
+        </h1>
+
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">
+            Build immersive 3D ecosystems with the world's most advanced spatial web engine. 
+            Experience reality, redefined.
+        </p>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-20">
+            <a href="products.html" class="bg-[#CCFF00] text-black font-bold py-4 px-10 rounded-full glow-green hover:scale-105 transition-transform glass border-t border-white/20">
+                GET STARTED
+            </a>
+            <a href="products.html" class="border border-white/20 hover:border-[#00F0FF] text-white py-4 px-10 rounded-full transition-colors font-medium">
+                VIEW SHOWCASE
+            </a>
+        </div>
+
+        <div class="relative w-80 h-80 mx-auto">
+            <div class="hologram-sphere absolute inset-0 flex items-center justify-center">
+                <div class="w-64 h-64 glass rounded-full flex items-center justify-center border border-white/10">
+                    <div class="w-48 h-48 border border-cyan/20 rounded-full animate-spin" style="animation-duration: 8s;"></div>
+                </div>
+            </div>
+            <div class="absolute inset-0 blur-3xl bg-[#00F0FF]/10 rounded-full"></div>
+        </div>
+    </main>
+
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#CCFF00]/5 blur-[120px] rounded-full"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#00F0FF]/5 blur-[120px] rounded-full"></div>
+</body>
+</html>

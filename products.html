@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniMind Studio | Asset Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="min-h-screen pt-24 px-8 md:px-12">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
+        <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">OMNIMIND</div>
+        <div class="flex space-x-8 items-center">
+            <a href="index.html" class="nav-link font-medium text-sm uppercase tracking-widest">Home</a>
+            <a href="products.html" class="nav-link nav-active font-medium text-sm uppercase tracking-widest">Marketplace</a>
+            <a href="dashboard.html" class="nav-link font-medium text-sm uppercase tracking-widest">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- AI Filter Panel -->
+        <aside class="w-full lg:w-64 glass p-6 rounded-2xl h-fit sticky top-24">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#00F0FF] mb-6">AI Filters</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Complexity</label>
+                    <input type="range" class="w-full h-1 bg-gray-700 accent-[#CCFF00]">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Category</label>
+                    <div class="flex flex-col gap-2">
+                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">3D Models</button>
+                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">Gadgets</button>
+                        <button class="text-left text-sm hover:text-[#00F0FF] transition-colors">Environments</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-12">
+            <!-- Product Card 1 -->
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
+                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
+                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
+                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+                </div>
+                <h3 class="font-semibold text-lg">Quantum Core</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-[#CCFF00] font-bold">$1,299</span>
+                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
+                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
+                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
+                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+                </div>
+                <h3 class="font-semibold text-lg">Neural Link</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-[#CCFF00] font-bold">$899</span>
+                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="glass neon-border rounded-2xl overflow-hidden p-4 group">
+                <div class="viewer-canvas h-48 rounded-xl mb-4 flex items-center justify-center relative">
+                    <span class="text-gray-600 text-xs tracking-widest uppercase">3D Preview Canvas</span>
+                    <div class="absolute bottom-2 right-2 text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">⟳ Rotate</div>
+                </div>
+                <h3 class="font-semibold text-lg">Spatial Frame</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-[#CCFF00] font-bold">$499</span>
+                    <a href="dashboard.html" class="text-[10px] border border-white/20 px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition-all">QUICK VIEW AR</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
