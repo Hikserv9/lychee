@@ -5,16 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OmniMind Studio | Spatial Web Templates</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0B0B0F',
+                        'neon-green': '#CCFF00',
+                        'electric-cyan': '#00F0FF',
+                        'ai-violet': '#A855F7',
+                    },
+                    fontFamily: {
+                        'sci-fi': ['Orbitron', 'sans-serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body class="min-h-screen pt-24 px-6 md:px-12 bg-[#0B0B0F] text-white font-sans">
+<body class="min-h-screen pt-24 px-6 md:px-12 bg-[#0B0B0F] text-white font-sans overflow-x-hidden" x-data="templateStore()" x-cloak>
+
     <!-- Top Universal Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass px-8 py-4 flex justify-between items-center">
-        <div class="font-sci-fi text-xl font-bold tracking-widest text-gradient-cyan-lime">OMNIMIND</div>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/[0.03] backdrop-blur-[12px] border border-white/[0.08] hover:border-electric-cyan/30 px-8 py-4 flex justify-between items-center transition-colors">
+        <div class="font-sci-fi text-xl font-bold tracking-widest bg-gradient-to-br from-neon-green to-electric-cyan bg-clip-text text-transparent">OMNIMIND</div>
         <div class="flex space-x-8 items-center">
-            <a href="index.html" class="nav-link font-medium text-sm uppercase tracking-widest">Home</a>
-            <a href="products.html" class="nav-link nav-active font-medium text-sm uppercase tracking-widest">Marketplace</a>
-            <a href="dashboard.html" class="nav-link font-medium text-sm uppercase tracking-widest">Dashboard</a>
+            <a href="index.html" class="relative transition-colors duration-200 text-electric-cyan hover:text-electric-cyan [text-shadow:0_0_10px_rgba(0,240,255,0.6)] font-medium text-sm uppercase tracking-widest">Home</a>
+            <a href="products.html" class="relative transition-colors duration-200 hover:text-electric-cyan font-medium text-sm uppercase tracking-widest">Marketplace</a>
+            <a href="dashboard.html" class="relative transition-colors duration-200 hover:text-electric-cyan font-medium text-sm uppercase tracking-widest">Dashboard</a>
         </div>
     </nav>
 
@@ -26,8 +49,6 @@
                 <h1 class="text-4xl md:text-5xl font-sci-fi font-bold mt-1">NEXT-GEN TEMPLATES</h1>
                 <p class="text-gray-400 text-sm mt-2 max-w-xl">Production-ready spatial web architecture, 3D canvases, and AI-integrated web templates.</p>
             </div>
-            
-            <!-- Category Filter Badges -->
             <div class="flex flex-wrap gap-2">
                 <button class="px-4 py-2 rounded-full text-xs font-semibold bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40">All Templates</button>
                 <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">Landing Page</button>
@@ -36,8 +57,6 @@
                 <button class="px-4 py-2 rounded-full text-xs font-semibold glass hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all">E-Commerce</button>
             </div>
         </div>
-
-        <!-- Search Bar & Filters -->
         <div class="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
             <div class="relative w-full md:w-96">
                 <input type="text" placeholder="Search templates, tech, keywords..." class="w-full glass py-2.5 px-4 pl-10 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-gray-200 placeholder-gray-500">
@@ -55,290 +74,225 @@
     </header>
 
     <!-- 3-Column Template Grid -->
-    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
-
-        <!-- Card 1: AI SaaS Landing Page -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/10 to-[#A855F7]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-24 h-24 rounded-full border border-cyan/30 flex items-center justify-center animate-pulse">
-                        <span class="text-xs font-sci-fi text-[#00F0FF] tracking-widest">3D CANVAS</span>
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20" x-show="templates.length">
+        <template x-for="tmpl in templates" :key="tmpl.id">
+            <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
+                <div>
+                    <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
+                        <div class="absolute inset-0" :style="'background: linear-gradient(to bottom right, ' + tmpl.config.secondaryColor + '10, ' + tmpl.config.primaryColor + '10); opacity: 0.5; transition: opacity 0.3s;'"></div>
+                        <div class="w-24 h-24 rounded-full border flex items-center justify-center animate-pulse" :style="'border-color: ' + tmpl.config.primaryColor + '80;'>
+                            <span class="text-xs font-sci-fi" :style="'color: ' + tmpl.config.primaryColor + ';'" x-text="tmpl.icon"></span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase" :class="tmpl.isFree ? 'bg-[#00F0FF] text-black' : tmpl.popular ? 'bg-[#CCFF00] text-black' : 'bg-white/10 text-gray-300'" x-text="tmpl.isFree ? 'FREE' : tmpl.popular ? 'HOT' : 'PRO'"></span>
                     </div>
-                    <span class="absolute top-3 right-3 text-[10px] bg-[#CCFF00] text-black font-bold px-2.5 py-1 rounded-full uppercase">HOT</span>
-                </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">NeuralSaaS Spatial</h3>
-                    <span class="text-[#CCFF00] font-bold text-lg">$79</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">Ultra-modern AI platform landing page with real-time WebGL node visualizer and glassmorphic UI widgets.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Next.js 14</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Three.js</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Tailwind</span>
-                </div>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="novamind.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('NeuralSaaS Spatial', 79, 'paid')" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
-        <!-- Card 2: Minimalist 3D Portfolio -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/10 to-[#00F0FF]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-20 h-20 rounded-lg border border-lime/30 flex items-center justify-center transform rotate-12">
-                        <span class="text-xs font-sci-fi text-[#CCFF00] tracking-widest">PORTFOLIO</span>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors" x-text="tmpl.name"></h3>
+                        <span class="text-[#CCFF00] font-bold text-lg" x-text="tmpl.isFree ? 'FREE' : '$' + tmpl.price"></span>
                     </div>
-                    <span class="absolute top-3 right-3 text-[10px] bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 font-bold px-2 py-0.5 rounded-full uppercase">NEW</span>
-                </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Aetherfolio 3D</h3>
-                    <span class="text-[#CCFF00] font-bold text-lg">$49</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">Sleek interactive portfolio featuring custom Spline 3D viewport canvas, kinetic typography, and audio FX.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">React</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Spline 3D</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Framer Motion</span>
-                </div>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="portfolio.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('Aetherfolio 3D', 49, 'paid')" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
-        <!-- Card 3: Web3 Crypto Dashboard -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#A855F7]/15 to-[#00F0FF]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-28 h-20 border border-white/20 rounded flex items-center justify-center">
-                        <span class="text-xs font-sci-fi text-[#00F0FF] tracking-widest">DASHBOARD</span>
-                    </div>
-                    <span class="absolute top-3 right-3 text-[10px] bg-white/10 text-gray-300 font-bold px-2 py-0.5 rounded-full uppercase">PRO</span>
-                </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Vortex Protocol</h3>
-                    <span class="text-[#CCFF00] font-bold text-lg">$99</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">DeFi analytics and Web3 management dashboard with real-time WebSocket chart widgets and wallet connect.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Vue 3</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Chart.js</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Ethers.js</span>
-                </div>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="aetherx.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('Vortex Protocol', 99, 'paid')" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
-        <!-- Card 4: Futuristic E-Commerce -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/15 to-[#A855F7]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-24 h-24 rounded-full border-2 border-dashed border-[#CCFF00]/40 flex items-center justify-center">
-                        <span class="text-xs font-sci-fi text-[#CCFF00] tracking-widest">STORE 3D</span>
+                    <p class="text-gray-400 text-xs line-clamp-2 mb-4" x-text="tmpl.description"></p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <template x-for="tech in tmpl.techs" :key="tech">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300" x-text="tech"></span>
+                        </template>
                     </div>
                 </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">CyberCart Spatial</h3>
-                    <span class="text-[#CCFF00] font-bold text-lg">$85</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">High-tech spatial e-commerce storefront with AR product preview integration and interactive 3D product rotators.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Next.js</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebGL</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Shopify API</span>
+                <div class="flex gap-3 pt-2">
+                    <a :href="tmpl.demoPage" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
+                    <button @click="selectTmpl(tmpl); paymentMode='stripe'; purchaseOpen = true" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer" x-text="tmpl.isFree ? 'Download' : 'Buy'"></button>
+                    <button @click="openConfig(tmpl)" class="flex-1 text-center py-2.5 rounded-xl border border-[#00F0FF]/40 text-[#00F0FF] text-xs font-bold hover:bg-[#00F0FF]/10 transition-all cursor-pointer">Customize</button>
                 </div>
             </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="vortex-wear.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('CyberCart Spatial', 85, 'paid')" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
-        <!-- Card 5: Spatial Audio Studio (FREE) -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/15 to-[#CCFF00]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="flex items-end space-x-1.5 h-12">
-                        <div class="waveform-bar" style="animation-delay: 0.1s"></div>
-                        <div class="waveform-bar" style="animation-delay: 0.3s"></div>
-                        <div class="waveform-bar" style="animation-delay: 0.2s"></div>
-                        <div class="waveform-bar" style="animation-delay: 0.4s"></div>
-                    </div>
-                    <span class="absolute top-3 right-3 text-[10px] bg-[#00F0FF] text-black font-bold px-2.5 py-1 rounded-full uppercase">FREE</span>
-                </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">Resonance Audio</h3>
-                    <span class="text-[#00F0FF] font-bold text-lg">FREE</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">WebAudio API synthesis landing showcase page for music producers, podcasts, and generative sound engines.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebAudio API</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Canvas 2D</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Tailwind</span>
-                </div>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="portfolio.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('Resonance Audio', 0, 'free')" class="flex-1 text-center py-2.5 rounded-xl bg-[#00F0FF] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
-        <!-- Card 6: AR Meta World -->
-        <div class="glass rounded-2xl p-5 flex flex-col justify-between neon-border hover:shadow-[0_0_25px_rgba(0,240,255,0.15)] transition-all group">
-            <div>
-                <div class="viewer-canvas h-48 rounded-xl mb-4 relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/40 transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#A855F7]/20 to-[#CCFF00]/10 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-20 h-20 rounded-full border border-purple-500/40 flex items-center justify-center">
-                        <span class="text-xs font-sci-fi text-[#A855F7] tracking-widest">AR WORLD</span>
-                    </div>
-                </div>
-                
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">AetherVerse Spatial</h3>
-                    <span class="text-[#CCFF00] font-bold text-lg">$119</span>
-                </div>
-                <p class="text-gray-400 text-xs line-clamp-2 mb-4">WebXR compatible virtual real estate showcase and interactive 3D spatial world hub.</p>
-                
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">WebXR</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">Three.js</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300">GSAP</span>
-                </div>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <a href="portfolio.html" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 hover:border-[#00F0FF] text-xs font-semibold text-white hover:text-[#00F0FF] transition-all">Live Demo</a>
-                <button onclick="openModal('AetherVerse Spatial', 119, 'paid')" class="flex-1 text-center py-2.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Download / Buy</button>
-            </div>
-        </div>
-
+        </template>
     </main>
 
-    <!-- MODAL OVERLAY -->
-    <div id="modalOverlay" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <!-- PURCHASE MODAL (Alpine-driven) -->
+    <div x-show="purchaseOpen" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4" @click.away="purchaseOpen = false">
         <div class="glass w-full max-w-lg rounded-3xl p-8 border border-[#00F0FF]/30 relative shadow-[0_0_50px_rgba(0,240,255,0.2)]">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-lg font-bold">✕</button>
-            <div id="modalContent">
-                <!-- Dynamically injected via JS -->
+            <button @click="purchaseOpen = false" class="absolute top-6 right-6 text-gray-400 hover:text-white text-lg font-bold">✕</button>
+
+            <!-- Free Template -->
+            <div x-show="selectedTmpl && selectedTmpl.isFree" class="space-y-4">
+                <div class="text-center">
+                    <div class="w-12 h-12 rounded-full bg-[#00F0FF]/20 text-[#00F0FF] flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+                    <h3 class="font-sci-fi text-xl font-bold text-white mt-4" x-text="selectedTmpl.name"></h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mt-2">Thank you for downloading! Note: This free version includes an OmniMind watermark. Upgrade to PRO to remove it.</p>
+                </div>
+                <div class="pt-4 flex flex-col gap-3">
+                    <a href="portfolio.html" download class="w-full py-3 rounded-xl bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all text-center">Download ZIP (With Watermark)</a>
+                    <button @click="purchaseOpen = false; freeUpgradeOpen = true" class="w-full py-3 rounded-xl border border-[#CCFF00] text-[#CCFF00] font-bold text-xs uppercase tracking-widest hover:bg-[#CCFF00]/10 transition-all">Upgrade to PRO ($49)</button>
+                </div>
+            </div>
+
+            <!-- Paid Template -->
+            <div x-show="selectedTmpl && !selectedTmpl.isFree" class="space-y-6">
+                <div>
+                    <span class="text-[10px] font-sci-fi text-[#00F0FF] uppercase tracking-widest">Secure Checkout</span>
+                    <h3 class="font-sci-fi text-2xl font-bold text-white mt-1" x-text="selectedTmpl.name"></h3>
+                    <div class="text-[#CCFF00] font-bold text-lg mt-1" x-text="'$' + selectedTmpl.price + ' USD'"></div>
+                </div>
+                 <div class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400">Cardholder Name</label>
+                        <input type="text" placeholder="Alex Vance" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400">Card Number / Crypto Wallet</label>
+                        <input type="text" placeholder="4242 •••• •••• 4242" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400">Exp Date</label>
+                            <input type="text" placeholder="MM/YY" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400">CVC / PIN</label>
+                            <input type="password" placeholder="•••" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400">Payment Method</label>
+                        <div class="flex gap-2">
+                            <button @click="setPaymentMode('stripe')" :class="paymentMode === 'stripe' ? 'bg-[#00F0FF] text-black' : 'bg-white/5 text-gray-400'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all">Stripe</button>
+                            <button @click="setPaymentMode('midtrans')" :class="paymentMode === 'midtrans' ? 'bg-[#00F0FF] text-black' : 'bg-white/5 text-gray-400'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all">QRIS (Midtrans)</button>
+                        </div>
+                    </div>
+                </div>
+                <button @click="checkout()" class="w-full py-3.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs uppercase tracking-widest glow-green hover:scale-[1.02] transition-all cursor-pointer" x-text="selectedTmpl && selectedTmpl.isFree ? 'Download Now' : (purchaseLoading ? 'Processing...' : 'Complete Purchase')"></button>
+                <div class="text-[10px] text-gray-500 mt-2 text-center">
+                    <template x-if="selectedTmpl && !selectedTmpl.isFree">
+                        <span>
+                            Using <span x-text="paymentMode === 'stripe' ? 'Stripe' : 'QRIS (Midtrans)'"></span> (demo)
+                        </span>
+                    </template>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript for Modals & Checkout -->
-    <script>
-        function openModal(name, price, type) {
-            const overlay = document.getElementById('modalOverlay');
-            const content = document.getElementById('modalContent');
-            overlay.classList.remove('hidden');
+    <!-- FREE UPGRADE MODAL -->
+    <div x-show="freeUpgradeOpen" class="fixed inset-0 z-[55] bg-black/80 backdrop-blur-md flex items-center justify-center p-4" @click.away="freeUpgradeOpen = false">
+        <div class="glass w-full max-w-lg rounded-3xl p-8 border border-[#CCFF00]/30 relative shadow-[0_0_50px_rgba(204,255,0,0.2)]">
+            <button @click="freeUpgradeOpen = false" class="absolute top-6 right-6 text-gray-400 hover:text-white text-lg font-bold">✕</button>
+            <div class="text-center space-y-6 py-6">
+                <div class="w-16 h-16 rounded-full bg-[#CCFF00]/20 text-[#CCFF00] flex items-center justify-center mx-auto text-3xl font-bold">👑</div>
+                <h3 class="font-sci-fi text-2xl font-bold text-white">Upgrade to OmniMind PRO</h3>
+                <p class="text-gray-300 text-sm">Remove watermarks, get commercial license, and access 3D assets for all templates.</p>
+                <div class="text-center mb-4"><span class="text-3xl font-extrabold text-white">$49</span><span class="text-sm text-gray-400"> / one-time</span></div>
+                <button @click="freeUpgradeOpen = false" class="w-full py-3.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(204,255,0,0.4)] transition-all cursor-pointer">Unlock Now</button>
+            </div>
+        </div>
+    </div>
 
-            if (type === 'free') {
-                content.innerHTML = `
-                    <div class="text-center space-y-4">
-                        <div class="w-12 h-12 rounded-full bg-[#00F0FF]/20 text-[#00F0FF] flex items-center justify-center mx-auto text-xl font-bold">✓</div>
-                        <h3 class="font-sci-fi text-xl font-bold text-white">${name}</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">
-                            Thank you for downloading! Note: This free version includes an OmniMind watermark. Upgrade to PRO to remove it.
-                        </p>
-                        <div class="pt-4 flex flex-col gap-3">
-                            <a href="portfolio.html" download class="w-full py-3 rounded-xl bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all text-center">
-                                Download ZIP (With Watermark)
-                            </a>
-                            <button onclick="openModal('${name}', 49, 'paid')" class="w-full py-3 rounded-xl border border-[#CCFF00] text-[#CCFF00] font-bold text-xs uppercase tracking-widest hover:bg-[#CCFF00]/10 transition-all">
-                                Upgrade to PRO ($49)
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                content.innerHTML = `
-                    <div class="space-y-6">
-                        <div>
-                            <span class="text-[10px] font-sci-fi text-[#00F0FF] uppercase tracking-widest">Secure Checkout</span>
-                            <h3 class="font-sci-fi text-2xl font-bold text-white mt-1">${name}</h3>
-                            <div class="text-[#CCFF00] font-bold text-lg mt-1">$${price} USD</div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="space-y-1">
-                                <label class="text-[10px] uppercase tracking-widest text-gray-400">Cardholder Name</label>
-                                <input type="text" placeholder="Alex Vance" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="text-[10px] uppercase tracking-widest text-gray-400">Card Number / Crypto Wallet</label>
-                                <input type="text" placeholder="4242 •••• •••• 4242" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="space-y-1">
-                                    <label class="text-[10px] uppercase tracking-widest text-gray-400">Exp Date</label>
-                                    <input type="text" placeholder="MM/YY" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
-                                </div>
-                                <div class="space-y-1">
-                                    <label class="text-[10px] uppercase tracking-widest text-gray-400">CVC / PIN</label>
-                                    <input type="password" placeholder="•••" class="w-full glass py-2.5 px-4 rounded-xl text-sm focus:outline-none focus:border-[#00F0FF] text-white">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button onclick="completePurchase('${name}')" class="w-full py-3.5 rounded-xl bg-[#CCFF00] text-black font-bold text-xs uppercase tracking-widest glow-green hover:scale-[1.02] transition-all cursor-pointer">
-                            Complete Purchase ($${price})
-                        </button>
-                    </div>
-                `;
-            }
-        }
-
-        function completePurchase(name) {
-            const content = document.getElementById('modalContent');
-            content.innerHTML = `
-                <div class="text-center space-y-6 py-6">
-                    <div class="w-16 h-16 rounded-full bg-[#CCFF00]/20 text-[#CCFF00] flex items-center justify-center mx-auto text-3xl font-bold animate-bounce">✓</div>
-                    <div>
-                        <h3 class="font-sci-fi text-2xl font-bold text-white">Payment Successful!</h3>
-                        <p class="text-gray-300 text-sm mt-2">
-                            Your premium watermark-free ZIP file for <strong class="text-white">${name}</strong> is ready to download.
-                        </p>
-                    </div>
-                    <a href="portfolio.html" download class="block w-full py-3.5 rounded-xl bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-widest glow-cyan hover:scale-[1.02] transition-all text-center">
-                        Download Watermark-Free ZIP
-                    </a>
+    <!-- CONFIG SLIDEOUT (Right Side) -->
+    <div x-show="configOpen" class="fixed inset-0 z-[60] flex">
+        <div x-show="configOpen"
+             x-transition:enter="transition ease-in-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in-out duration-300"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-black/50 backdrop-blur-sm"
+             @click="closeConfig()"></div>
+        <div x-show="configOpen"
+             x-transition:enter="transition ease-in-out duration-300"
+             x-transition:enter-start="translate-x-full"
+             x-transition:enter-end="translate-x-0"
+             x-transition:leave="transition ease-in-out duration-300"
+             x-transition:leave-start="translate-x-0"
+             x-transition:leave-end="translate-x-full"
+             class="relative ml-auto w-full max-w-md bg-[#0B0B0F] border-l border-white/10 shadow-[0_0_60px_rgba(0,240,255,0.15)] overflow-y-auto transform">
+            <div class="sticky top-0 bg-[#0B0B0F] border-b border-white/10 px-6 py-4 flex justify-between items-center z-10">
+                <h3 class="font-sci-fi text-lg font-bold text-white" x-text="activeConfig ? activeConfig.name + ' — Customize' : 'Customize'"></h3>
+                <button @click="closeConfig()" class="text-gray-400 hover:text-white text-xl font-bold">✕</button>
+            </div>
+            <div class="p-6 space-y-6" x-show="activeConfig">
+                <!-- Logo Text -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Logo / Brand Text</label>
+                    <input type="text" x-model="activeConfig.config.logoText" class="w-full glass py-2.5 px-4 rounded-xl text-sm text-white focus:outline-none focus:border-[#00F0FF] mt-1">
                 </div>
-            `;
-        }
+                <!-- Primary Color -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Primary Color</label>
+                    <div class="flex items-center gap-3 mt-1">
+                        <input type="color" x-model="activeConfig.config.primaryColor" class="w-10 h-10 rounded cursor-pointer border border-white/20 bg-transparent">
+                        <input type="text" x-model="activeConfig.config.primaryColor" class="flex-1 glass py-2 px-3 rounded-xl text-sm text-white font-mono focus:outline-none focus:border-[#00F0FF]">
+                    </div>
+                </div>
+                <!-- Secondary Color -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Secondary Color</label>
+                    <div class="flex items-center gap-3 mt-1">
+                        <input type="color" x-model="activeConfig.config.secondaryColor" class="w-10 h-10 rounded cursor-pointer border border-white/20 bg-transparent">
+                        <input type="text" x-model="activeConfig.config.secondaryColor" class="flex-1 glass py-2 px-3 rounded-xl text-sm text-white font-mono focus:outline-none focus:border-[#00F0FF]">
+                    </div>
+                </div>
+                <!-- Accent Color -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Accent Color</label>
+                    <div class="flex items-center gap-3 mt-1">
+                        <input type="color" x-model="activeConfig.config.accentColor" class="w-10 h-10 rounded cursor-pointer border border-white/20 bg-transparent">
+                        <input type="text" x-model="activeConfig.config.accentColor" class="flex-1 glass py-2 px-3 rounded-xl text-sm text-white font-mono focus:outline-none focus:border-[#00F0FF]">
+                    </div>
+                </div>
+                <!-- Font Family -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Font Family</label>
+                    <select x-model="activeConfig.config.font" class="w-full glass py-2.5 px-4 rounded-xl text-white bg-transparent focus:outline-none border border-white/10 mt-1">
+                        <option value="Inter">Inter</option>
+                        <option value="Space Grotesk">Space Grotesk</option>
+                        <option value="JetBrains Mono">JetBrains Mono</option>
+                        <option value="Orbitron">Orbitron</option>
+                        <option value="Outfit">Outfit</option>
+                    </select>
+                </div>
+                <!-- Sections Toggle -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Sections</label>
+                    <div class="space-y-2 mt-2">
+                        <template x-for="section in sectionsList" :key="section">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" x-model="activeConfig.config.sections" :value="section" class="accent-[#00F0FF] w-4 h-4">
+                                <span class="text-sm text-gray-300" x-text="section"></span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+                <!-- Live Preview -->
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest text-gray-500">Live Preview</label>
+                    <div class="glass rounded-xl p-4 mt-2 overflow-hidden" :style="'--primary:' + activeConfig.config.primaryColor + ';--secondary:' + activeConfig.config.secondaryColor + ';--accent:' + activeConfig.config.accentColor + ';--font-family:' + activeConfig.config.font + ';'">
+                        <div class="border-b border-white/5 pb-3 mb-3">
+                            <span class="font-sci-fi text-xs font-bold tracking-widest uppercase" :style="'color: var(--primary);'" x-text="activeConfig.config.logoText"></span>
+                        </div>
+                        <div class="space-y-2">
+                            <template x-for="(section, idx) in [activeConfig.config.sections[0] || 'Hero', activeConfig.config.sections[1] || 'Features']" :key="idx">
+                                <div :class="idx === 0 ? 'h-3' : 'h-2'" class="rounded-full" :style="'background: var(--primary); opacity: ' + (0.4 - idx * 0.1) + ';'"></div>
+                            </template>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mt-3">
+                            <template x-for="tech in activeConfig.config.sections.slice(0, 3)" :key="tech">
+                                <span class="text-[10px] px-2 py-1 rounded-full border text-center" x-text="tech"></span>
+                            </template>
+                        </div>
+                        <div class="glass rounded-lg p-3 mt-3 flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full" :style="'background: var(--primary);'"></div>
+                            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full transition-all duration-500" :style="'width: ' + (40 + Math.random() * 30) + '%; background: var(--secondary);'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Download -->
+                <button @click="downloadConfig()" class="w-full py-3 rounded-xl bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+                    Download Customized HTML
+                </button>
+            </div>
+        </div>
+    </div>
 
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.add('hidden');
-        }
-
-        // Close on background click
-        document.getElementById('modalOverlay').addEventListener('click', (e) => {
-            if (e.target.id === 'modalOverlay') closeModal();
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
 </body>
 </html>

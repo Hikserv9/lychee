@@ -52,8 +52,8 @@ let cart=0;
 const grid=document.getElementById('grid');
 products.forEach(p=>{
 grid.innerHTML+=`
-<div class="glass rounded-2xl p-4 neon-border group flex flex-col">
-<div class="viewer-canvas h-64 rounded-xl relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/30 transition">
+<div class="glass rounded-3xl shadow-2xl p-4 neon-border group flex flex-col">
+<div class="viewer-canvas h-64 rounded-2xl relative overflow-hidden flex items-center justify-center border border-white/5 group-hover:border-[#00F0FF]/30 transition">
 <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/5 to-[#CCFF00]/5 opacity-0 group-hover:opacity-100 transition"></div>
 <span class="text-[10px] tracking-[0.3em] uppercase text-white/20">${p.cat}</span>
 <button onclick="openQuickView(${p.id})" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/40 backdrop-blur-sm text-xs font-bold tracking-widest uppercase text-white">Quick View</button>
@@ -62,17 +62,17 @@ grid.innerHTML+=`
 <h3 class="font-sci-fi text-xs font-bold tracking-widest">${p.name}</h3>
 <p class="text-[#CCFF00] font-bold text-sm mt-1">$${p.price}</p>
 </div>
-<button onclick="addToCart()" class="mt-3 w-full py-2.5 rounded-xl border border-white/10 text-xs font-bold tracking-widest uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition">Add to Cart</button>
+<button onclick="addToCart()" class="mt-3 w-full py-2.5 rounded-2xl border border-white/10 text-xs font-bold tracking-widest uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition">Add to Cart</button>
 </div>`;
 });
 function openQuickView(id){
 const p=products.find(x=>x.id===id);
 document.getElementById('qvContent').innerHTML=`
-<div class="viewer-canvas h-56 rounded-xl flex items-center justify-center mb-6 text-xs tracking-[0.3em] uppercase text-white/30">${p.cat} Preview</div>
+<div class="viewer-canvas h-56 rounded-2xl flex items-center justify-center mb-6 text-xs tracking-[0.3em] uppercase text-white/30">${p.cat} Preview</div>
 <h3 class="font-sci-fi text-xl font-bold">${p.name}</h3>
 <p class="text-[#CCFF00] font-bold mt-1">$${p.price}</p>
 <p class="text-gray-400 text-sm mt-3">Limited obsidian edition. Water-repellent nano-weave, thermal adaptive lining.</p>
-<button onclick="addToCart();closeQuickView()" class="mt-6 w-full py-3 rounded-xl bg-[#CCFF00] text-black font-bold text-xs tracking-widest uppercase glow-green">Add to Cart — $${p.price}</button>`;
+<button onclick="addToCart();closeQuickView()" class="mt-6 w-full py-3 rounded-2xl bg-[#CCFF00] text-black font-bold text-xs tracking-widest uppercase glow-green">Add to Cart — $${p.price}</button>`;
 document.getElementById('quickView').classList.remove('hidden');
 }
 function closeQuickView(){document.getElementById('quickView').classList.add('hidden');}

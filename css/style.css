@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
   --bg-obsidian: #0B0B0F;
@@ -16,6 +16,18 @@ body {
 
 .font-sci-fi {
   font-family: 'Orbitron', sans-serif;
+}
+
+.font-space-grotesk {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-jetbrains-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-outfit {
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 
 .glass {
